@@ -8,8 +8,8 @@ A phonecard reader that outputs the memory of a phonecard in hexadecimal via key
 
 - should read the memory of Gen 1 phonecards
 - should read the memory of Gen 2 ISO 7816 phonecards
-- should return the memory as a hex string to a computer or smartphone
-- evaluate the checksum
+- should return the memory as a hex string to a computer or smartphone as keystrokes
+- should check if memory can be read consistently
 
 ## Specs
 

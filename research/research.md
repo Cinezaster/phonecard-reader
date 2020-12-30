@@ -18,4 +18,4 @@
 - [https://hackaday.com/2008/11/25/how-to-read-a-fedex-kinkos-smart-card-sle4442/](https://hackaday.com/2008/11/25/how-to-read-a-fedex-kinkos-smart-card-sle4442/)
 - [http://col2000.free.fr/telecart/index.htm](http://col2000.free.fr/telecart/index.htm)
 - [https://forum.arduino.cc/index.php?topic=91751.0](https://forum.arduino.cc/index.php?topic=91751.0)
-- [Type of Smart Cards](https://www.sbprojects.net/knowledge/footprints/smart/index.php) 
+- [Type of Smart Cards](https://www.sbprojects.net/knowledge/footprints/smart/index.php)

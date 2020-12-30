@@ -2,7 +2,7 @@
 
 A phonecard reader that outputs the memory of a phonecard in hexadecimal via keystrokes
 
-![Phonecard reader pcb](https://github.com/Cinezaster/phonecard-reader/raw/master/hardware/phonecard-reader-pcb.png "phonecard reader pcb")
+![Phonecard reader pcb](https://github.com/Cinezaster/phonecard-reader/raw/main/hardware/phonecard-reader-pcb.png "phonecard reader pcb")
 
 ## Requirements
 

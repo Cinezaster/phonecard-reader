@@ -1,15 +1,14 @@
 #include <Bounce2.h>
-//#include "Keyboard.h"
+#include "Keyboard.h"
 
-#define CARD_PIN_1 4
-#define CARD_PIN_2 5
+#define CARD_PIN_1 5
+#define CARD_PIN_2 4
 #define CARD_PIN_3 6
-#define CARD_PIN_4 7
-#define CARD_PIN_5 8
+#define CARD_PIN_4 8
 #define CARD_PIN_6 9
 #define CARD_PIN_7 10
 #define CARD_PIN_8 11
-#define BUTTON_PIN 2
+#define BUTTON_PIN 7
 #define LED_PIN 13
 
 // Instantiate a Bounce object :
@@ -23,8 +22,9 @@ int val = 0;
 int VCC, R_W, CLK, RST, GND, VPP, IO, FUSE, NC1, NC2;
 
 void relaxPinState () {
-  for (int i = 4; i < 11; i++) {
-    pinMode(i, INPUT);
+  int pins[7] = {4, 5, 6, 8, 9, 10, 11};
+  for (int i = 0; i < 7; i++) {
+    pinMode(pins[i], INPUT);
   }
 }
 
@@ -44,10 +44,6 @@ void readGenOneCard ( ) {
   RST = CARD_PIN_4;
   pinMode(RST, OUTPUT);
   digitalWrite(RST, 1);
-
-  GND = CARD_PIN_5;
-  pinMode(GND, OUTPUT);
-  digitalWrite(GND, 0);
 
   VPP = CARD_PIN_6;
   pinMode(VPP, OUTPUT);
@@ -101,10 +97,6 @@ void readGenTwoCard () {
   pinMode(NC1, OUTPUT);
   digitalWrite(NC1, 0);
 
-  GND = CARD_PIN_5;
-  pinMode(GND, OUTPUT);
-  digitalWrite(GND, 0);
-
   VPP = CARD_PIN_6;
   pinMode(VPP, OUTPUT);
   digitalWrite(VPP, 0);
@@ -157,26 +149,35 @@ void readGenTwoCard () {
 }
 
 void setup() {
-  Serial.begin(9600);
+  //Serial.begin(9600);
+  Keyboard.begin();
   // Setup the button with an internal pull-up :
   pinMode(BUTTON_PIN, INPUT_PULLUP);
 
   // After setting up the button, setup the Bounce instance :
   debouncer.attach(BUTTON_PIN);
-  debouncer.interval(500);
+  debouncer.interval(25);
 
   // Setup the LED :
   pinMode(LED_PIN, OUTPUT);
   digitalWrite(LED_PIN, LOW);
 
-  for (int i = 4; i < 11; i++) {
-    pinMode(i, INPUT);
-  }
+  relaxPinState();
 }
 
 bool check (byte checksum) {
   calculated_sum = -checksum;
-  return (calculated_sum == 0x20 || calculated_sum == 0 ) ;
+  return (calculated_sum < 0xFF && calculated_sum > 0 && calculated_sum != 0x20) ;
+}
+
+void printHex () {
+  for (int i = 0; i < 32; i++) {
+    sprintf(tmp, "%.2X", memMap[i]);
+    for (int j = 0; j < 2; j++) {
+      Keyboard.print(tmp[j]);
+    }
+  }
+  Keyboard.println("");
 }
 
 void loop() {
@@ -185,18 +186,22 @@ void loop() {
   debouncer.update();
 
   // Call code if Bounce fell (transition from HIGH to LOW) :
-  if ( debouncer.rose() ) {
+  if ( debouncer.fell() ) {
+    digitalWrite(LED_PIN, HIGH);
     int testSum;
     readGenOneCard();
     testSum = sum;
     readGenOneCard();
     if (testSum == int(sum) && check(sum)) {
-      for (int i = 0; i < 32; i++) {
-        sprintf(tmp, "%.2X", memMap[i]);
-        for (int j = 0; j < 2; j++) {
-          Serial.print(tmp[j]);
-        }
+      printHex();
+    } else {
+      readGenTwoCard();
+      testSum = sum;
+      readGenTwoCard();
+      if (testSum == int(sum) && check(sum)) {
+        printHex();
       }
     }
+    digitalWrite(LED_PIN, LOW);
   }
 }

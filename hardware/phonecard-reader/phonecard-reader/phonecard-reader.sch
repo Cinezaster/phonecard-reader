@@ -592,7 +592,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </class>
 </classes>
 <parts>
-<part name="U$1" library="mylibrary" library_urn="urn:adsk.eagle:library:25379741" deviceset="ITSY_BITSY" device=""/>
+<part name="U$1" library="mylibrary" library_urn="urn:adsk.eagle:library:25379741" deviceset="ITSY_BITSY" device="" value="Itsy Bitsy 5V"/>
 <part name="U$2" library="mylibrary" library_urn="urn:adsk.eagle:library:25379741" deviceset="7312P0235A13LFC" device="" package3d_urn="urn:adsk.eagle:package:25379743/2"/>
 <part name="JP1" library="SparkFun-Jumpers" library_urn="urn:adsk.eagle:library:528" deviceset="JUMPER-SMT_2_NO" device="_SILK_ROUND" package3d_urn="urn:adsk.eagle:package:39280/1" value="Azerty"/>
 </parts>
@@ -603,9 +603,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instances>
 <instance part="U$1" gate="G$1" x="12.7" y="53.34" smashed="yes"/>
 <instance part="U$2" gate="G$1" x="157.48" y="55.88" smashed="yes"/>
-<instance part="JP1" gate="G$1" x="83.82" y="38.1" smashed="yes">
-<attribute name="NAME" x="81.28" y="40.64" size="1.778" layer="95" font="vector"/>
-<attribute name="VALUE" x="81.28" y="35.56" size="1.778" layer="96" font="vector" align="top-left"/>
+<instance part="JP1" gate="G$1" x="83.82" y="40.64" smashed="yes">
+<attribute name="NAME" x="81.28" y="43.18" size="1.778" layer="95" font="vector"/>
+<attribute name="VALUE" x="81.28" y="38.1" size="1.778" layer="96" font="vector" align="top-left"/>
 </instance>
 </instances>
 <busses>
@@ -699,7 +699,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <junction x="68.58" y="45.72"/>
 <label x="78.74" y="81.28" size="1.778" layer="95"/>
 <pinref part="JP1" gate="G$1" pin="2"/>
-<wire x1="88.9" y1="38.1" x2="88.9" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="40.64" x2="88.9" y2="43.18" width="0.1524" layer="91"/>
 <junction x="88.9" y="43.18"/>
 </segment>
 </net>
@@ -757,9 +757,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </net>
 <net name="N$1" class="0">
 <segment>
-<pinref part="U$1" gate="G$1" pin="12"/>
+<pinref part="U$1" gate="G$1" pin="13"/>
 <pinref part="JP1" gate="G$1" pin="1"/>
-<wire x1="66.04" y1="38.1" x2="78.74" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="40.64" x2="78.74" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
